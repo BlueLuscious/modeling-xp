@@ -15,12 +15,12 @@ class EntityModelAdmin(UserAdmin):
     list_display = ("pk", "username", "first_name", "last_name", "created_at", "updated_at", "roles_label", )
     ordering = ("-created_at", )
     search_fields = ("username", "first_name", "last_name", )
-    list_filter = ("groups__name", "is_staff", "is_active", )
+    list_filter = ("groups__name", "is_staff", "is_active", "gender", )
 
     # Edit User Form Layout
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        ("Personal info", {"fields": ("first_name", "last_name", "email", "phone_number", "avatar", "metadata")}),
+        ("Personal info", {"fields": ("first_name", "last_name", "email", "phone_number", "gender", "avatar", "metadata")}),
         ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),
         ("Important dates", {"fields": ("last_login", "date_joined")}),
     )
@@ -29,7 +29,7 @@ class EntityModelAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             "classes": ("wide",),
-            "fields": ("username", "email", "first_name", "last_name", "password1", "password2", "groups"),
+            "fields": ("username", "email", "first_name", "last_name", "password1", "password2", "gender", "groups"),
         }),
     )
     
