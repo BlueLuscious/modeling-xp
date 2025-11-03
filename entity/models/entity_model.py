@@ -1,11 +1,11 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+from ..choices.gender_choices import GenderChoices
 
 class EntityModel(AbstractUser):
-    """ Custom User Model that extends Django's AbstractUser. """
-    
-    phone_number = models.CharField(max_length=32, default="", blank=True)
+    """ Custom User Model that extends Django's AbstractUser. """    
+    phone_number = models.CharField(max_length=32, default="", blank=True)    
+    gender = models.CharField(choices=GenderChoices.choices, default=GenderChoices.MALE.value, blank=True)
     avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
     metadata = models.JSONField(default=dict, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
