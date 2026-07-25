@@ -1,0 +1,51 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argentinas XP</title>
+    {% comment %} <link rel="icon" href="{% static 'images/favicon_v2.ico' %}" type="image/x-icon"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'js/tailwind.config.js' %}"></script>
+</head>
+<body>
+    <!-- Messages -->
+    {% include "components/django-messages.html" with tailwind_class="z-30 top-4 md:left-4" %}
+
+    <!-- Login Form -->
+    <section class="flex items-center justify-center w-full h-dvh bg-blue-50">
+        <form method="post" enctype="multipart/form-data" id="login_form"
+            class="flex flex-col size-full max-w-lg sm:h-fit justify-between 
+            sm:justify-center gap-y-12 p-6 sm:p-12 m-0 bg-white sm:rounded-lg sm:shadow-lg"
+        >
+            {% csrf_token %}
+
+            <!-- Logo -->
+            {% comment %} <div class="flex justify-center w-full">
+                <img class="w-32 h-20" src="{% static 'images/cj-logo.png' %}" alt="">
+            </div> {% endcomment %}
+
+            <!-- Fields -->
+            <div class="flex flex-col gap-y-6">
+                <div class="flex flex-col gap-y-2">
+                    <label for="id_username" class="w-fit cursor-pointer cinzel-semibold">Usuario</label>
+                    {{ form.username }}
+                </div>
+                <div class="flex flex-col gap-y-2">
+                    <label for="id_password" class="w-fit cursor-pointer cinzel-semibold">Contraseña</label>
+                    {{ form.password }}
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row justify-between gap-6 w-full text-center">
+                <button type="submit" id="log_in_button">Iniciar Sesión</button>
+                <a href="" id="go_to_signup">Ir a registrarse</a>
+            </div>
+        </form>
+    </section>
+</body>
+<script type="module" src="{% static 'js/login.js' %}"></script>
+</html>

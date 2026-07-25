@@ -1,0 +1,18 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Titulo{% endblock title %}</title>
+    {% comment %} <link rel="icon" href="{% static 'images/favicon_v2.ico' %}" type="image/x-icon"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'js/tailwind.config.js' %}"></script>
+    {% block extra_heads %}{% endblock extra_heads %}
+</head>
+<body class="flex items-center justify-center min-h-dvh">
+    {% block content %}{% endblock content %}
+    {% block extra_scripts %}{% endblock extra_scripts %}
+</body>
+</html>

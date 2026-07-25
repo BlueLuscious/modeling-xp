@@ -1,0 +1,44 @@
+{% extends "layouts/simple.html" %}
+
+
+{% block body %}
+{% block navbar %}<nav id="navbar" class="">...</nav>{% endblock navbar %}
+
+<main  id="main" class="flex">
+    {% block sidebar %}<aside id="sidebar" class="">...</aside>{% endblock sidebar %}
+    <section id="content" class="w-full">
+        {% block content %}{% endblock content %}
+    </section>
+</main>
+
+{% block footer %}<footer id="footer" class="">...</footer>{% endblock footer %}
+{% endblock body %}
+
+
+
+{% comment %} {% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argentinas XP</title>
+    <link rel="icon" href="{% static 'images/favicon_v2.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'js/tailwind.config.js' %}"></script>
+</head>
+<body>
+    <!-- Messages -->
+    {% include "components/django-messages.html" with tailwind_class="z-30 top-4 md:left-4" %}
+
+    <!-- Log Out Button -->
+    {% if request.user.is_authenticated %}
+    <form id="log_out_form" method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" id="log_out_button">Cerrar Sesión</button>
+    </form>
+    {% endif %}
+</body>
+<script type="module" src="{% static 'js/login.js' %}"></script>
+</html> {% endcomment %}
